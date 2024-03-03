@@ -1,6 +1,6 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-});
+})
 module.exports = {
   siteMetadata: {
     title: `CATMDB`,
@@ -35,6 +35,6 @@ module.exports = {
           globPatterns: [`**/icons*`],
         },
       },
-    }
+    },
   ],
-};
+}

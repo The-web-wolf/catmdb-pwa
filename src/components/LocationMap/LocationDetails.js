@@ -1,17 +1,15 @@
-import React, { useContext, useState } from "react";
-import RatingStars from "../MapAssets/RatingStars";
-import GlobalContext from "../../context/GlobalContext";
-import Fee from "../StationsMap/Fee/Fee";
+import React, { useContext } from 'react'
+import RatingStars from '../MapAssets/RatingStars'
+import GlobalContext from '../../context/GlobalContext'
+import Fee from '../StationsMap/Fee/Fee'
 
 const LocationDetails = (props) => {
-  const gContext = useContext(GlobalContext);
+  const gContext = useContext(GlobalContext)
 
-  const { directionLoading, directionText, onGetDirection } = props;
+  const { directionLoading, directionText, onGetDirection } = props
   return (
     <div className="placeDetails__container">
-      <div className="placeDetails__container__name">
-        {gContext.selected.name}
-      </div>
+      <div className="placeDetails__container__name">{gContext.selected.name}</div>
       <div className="my-5">
         <Fee
           place_id={gContext.selected.place_id}
@@ -41,7 +39,7 @@ const LocationDetails = (props) => {
           <div className="placeDetails__container__phone">
             {gContext.selected.international_phone_number && (
               <>
-                <span className="fa fa-address-book mr-2"></span>{" "}
+                <span className="fa fa-address-book mr-2"></span>{' '}
                 {gContext.selected.international_phone_number}
               </>
             )}
@@ -64,11 +62,7 @@ const LocationDetails = (props) => {
           <div className="col-12 col-sm-7">
             <div className="placeDetails__container__website">
               {gContext.selected.website && (
-                <a
-                  href={gContext.selected.website}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={gContext.selected.website} target="_blank" rel="noreferrer">
                   <span className="fa fa-link mr-4"></span>
 
                   {gContext.selected.website}
@@ -79,50 +73,51 @@ const LocationDetails = (props) => {
           <div className="col-12 col-sm-5 ">
             <div className="placeDetails__container__opennow">
               <span className="fa fa-clock mr-4"></span>
-              {gContext.selected.opening_hours &&
-              gContext.selected.opening_hours.open_now
-                ? "Open Now"
-                : "Closed"}
+              {gContext.selected.opening_hours && gContext.selected.opening_hours.open_now
+                ? 'Open Now'
+                : 'Closed'}
             </div>
           </div>
         </div>
         {directionLoading ? (
           <>
-            <span className="fa fa-spinner fa-spin mr-4"></span> Loading
-            Direction
+            <span className="fa fa-spinner fa-spin mr-4"></span> Loading Direction
           </>
         ) : (
           <div className="buttons">
             <button
               className={
-                directionText && directionText.mode === "DRIVING"
-                  ? "btn btn-info"
-                  : "btn btn-outline-info"
+                directionText && directionText.mode === 'DRIVING'
+                  ? 'btn btn-info'
+                  : 'btn btn-outline-info'
               }
               onClick={onGetDirection}
               data-mode="DRIVING"
+              aria-label="Driving"
             >
               <span className="fa fa-car"></span>
             </button>
             <button
               className={
-                directionText && directionText.mode === "WALKING"
-                  ? "btn btn-info"
-                  : "btn btn-outline-info"
+                directionText && directionText.mode === 'WALKING'
+                  ? 'btn btn-info'
+                  : 'btn btn-outline-info'
               }
               onClick={onGetDirection}
               data-mode="WALKING"
+              aria-label="walking"
             >
               <span className="fa fa-walking"></span>
             </button>
             <button
               className={
-                directionText && directionText.mode === "TRANSIT"
-                  ? "btn btn-info"
-                  : "btn btn-outline-info"
+                directionText && directionText.mode === 'TRANSIT'
+                  ? 'btn btn-info'
+                  : 'btn btn-outline-info'
               }
               onClick={onGetDirection}
               data-mode="TRANSIT"
+              aria-label="transit"
             >
               <span className="fa fa-bus"></span>
             </button>
@@ -142,22 +137,21 @@ const LocationDetails = (props) => {
       <div className="placeDetails__container__feeback mt-10">
         {!props.hasRated ? (
           <h4 className="fancy-link">
-            <a
-              href="#"
+            <button
               className="text-info"
               onClick={() => {
-                props.setShowFeedbackForm(!props.showFeedbackForm);
+                props.setShowFeedbackForm(!props.showFeedbackForm)
               }}
             >
               Been here? Tell us about it
-            </a>
+            </button>
           </h4>
         ) : (
           <h4 className="fancy-link">Thank you for rating this location!</h4>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LocationDetails;
+export default LocationDetails

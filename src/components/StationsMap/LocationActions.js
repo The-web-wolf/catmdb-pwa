@@ -1,4 +1,3 @@
-import React from "react";
 import { round } from "lodash";
 import { gql } from "@apollo/client";
 import Client from "../Client";

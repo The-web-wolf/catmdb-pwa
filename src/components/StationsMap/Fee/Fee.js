@@ -1,27 +1,27 @@
-import React, { useContext, useState, useEffect } from "react";
-import Title from "../../Core/Title";
-import Button from "../../Core/Button";
-import Spinner from "../../Core/Spinner";
-import { getFees } from "../LocationActions";
-import Moment from "react-moment";
-import GlobalContext from "../../../context/GlobalContext";
+import React, { useContext, useState, useEffect } from 'react'
+import Title from '../../Core/Title'
+import Button from '../../Core/Button'
+import Spinner from '../../Core/Spinner'
+import { getFees } from '../LocationActions'
+import Moment from 'react-moment'
+import GlobalContext from '../../../context/GlobalContext'
 
 const Fee = ({ onAddFee, onEditFee, place_id }) => {
-  const [fees, setFees] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const gContext = useContext(GlobalContext);
+  const [fees, setFees] = useState([])
+  const [loading, setLoading] = useState(false)
+  const gContext = useContext(GlobalContext)
 
   useEffect(() => {
     const place_fees = async () => {
-      setLoading(true);
-      const fees = await getFees(place_id);
-      setFees(fees);
-      setLoading(false);
-    };
-    place_fees();
-  }, [gContext.refreshFees]);
+      setLoading(true)
+      const fees = await getFees(place_id)
+      setFees(fees)
+      setLoading(false)
+    }
+    place_fees()
+  }, [gContext.refreshFees, place_id])
 
-  const fee = fees && fees.find((fee) => fee.place_id === place_id);
+  const fee = fees && fees.find((fee) => fee.place_id === place_id)
 
   return fee ? (
     <div className="row align-items-end fee-display">
@@ -41,8 +41,7 @@ const Fee = ({ onAddFee, onEditFee, place_id }) => {
             {fee.User}
           </span>
           <span className="time">
-            <i className="far fa-clock mr-2"></i>{" "}
-            <Moment fromNow>{fee.updatedAt}</Moment>
+            <i className="far fa-clock mr-2"></i> <Moment fromNow>{fee.updatedAt}</Moment>
           </span>
         </div>
       </div>
@@ -52,7 +51,7 @@ const Fee = ({ onAddFee, onEditFee, place_id }) => {
           variant="solid"
           className="btn-block bg-transparent text-secondary"
           onClick={() => {
-            onEditFee(fee);
+            onEditFee(fee)
           }}
         >
           Wrong Fee
@@ -62,9 +61,7 @@ const Fee = ({ onAddFee, onEditFee, place_id }) => {
   ) : (
     <div className="row">
       <div className="col-12">
-        <Title variant="pre" >
-          Fee
-        </Title>
+        <Title variant="pre">Fee</Title>
         <div className="price my-3">
           <span className="fa fa-coins mr-4"></span>
           No Fee Recorded Yet {loading && <Spinner className="ml-2" />}
@@ -79,7 +76,7 @@ const Fee = ({ onAddFee, onEditFee, place_id }) => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Fee;
+export default Fee

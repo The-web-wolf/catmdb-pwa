@@ -3,10 +3,6 @@
   "description": "Crypto ATM Database",
   "version": "2.0.0",
   "author": "Emmanuel Abeshi",
-  "engine": {
-    "node": "v16.13.0",
-    "npm": "8.6.3"
-  },
   "dependencies": {
     "@apollo/client": "^3.5.9",
     "@n8tb1t/use-scroll-position": "^2.0.3",
@@ -61,6 +57,10 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\""
   },
   "devDependencies": {
-    "prettier": "^1.17.0"
+    "eslint-config-react-app": "^7.0.1"
+  },
+  "engines": {
+    "node": "^18.17.0",
+    "npm": "^9.6.7"
   }
 }
