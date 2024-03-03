@@ -27,7 +27,8 @@ const Signup = () => {
   };
   const onEmailChange = (e) => {
     const email = e.target.value;
-    const isValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    const isValid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    // const isValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     email === "" || !isValid
       ? setError("Please enter a valid email")
       : setError(null);

@@ -60,6 +60,7 @@ const GlobalProvider = ({ children }) => {
         location,
         handleLocationChange,
         libraries,
+        setLibraries,
         markers,
         handleMarkerAdd,
         selected,

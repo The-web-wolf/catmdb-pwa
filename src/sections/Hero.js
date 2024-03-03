@@ -20,7 +20,7 @@ const Hero = () => {
       {/* <!-- Hero Area --> */}
       <div className="position-relative z-index-1 bg-squeeze pt-26 pt-lg-34 pb-20 pb-lg-30 d-flex align-items-center dark-mode-texts" style={styles.container}>
         <div className="pos-abs-tr h-100  z-index-n1">
-          <img src={imgP} alt="Map background image" className="h-100" />
+          <img src={imgP} alt="Map background" className="h-100" />
         </div>
         <div className="container">
           <div className="row align-items-center">

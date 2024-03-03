@@ -11,6 +11,8 @@ import StationCard from "../StationCard";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import StationsList from "./StationsList";
 
+const googleMapsApiKey =  process.env.GOOGLE_MAPS_API_KEY;
+
 const options = {
   styles: MapStyles,
   disableDefaultUI: true,
@@ -43,7 +45,7 @@ const StationsMap = (props) => {
   }, []);
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey,
     libraries: gContext.libraries,
   });
 

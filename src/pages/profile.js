@@ -71,7 +71,7 @@ const UserProfile = () => {
       setUsername(gContext.userData.username);
       setLocation(gContext.userData.location);
     }
-  }, [gContext.isLoggedIn]);
+  }, [gContext.isLoggedIn, gContext.userData]);
 
   return (
     <>
@@ -125,7 +125,7 @@ const UserProfile = () => {
                           placeholder="First Name"
                           id="firstName"
                           name="firstName"
-                          autoComplete="firstName"
+                          autoComplete="given-name"
                           required
                           value={firstName}
                           onChange={handleFirstNameChange}
@@ -144,7 +144,7 @@ const UserProfile = () => {
                           placeholder="First Name"
                           id="lastName"
                           name="lastName"
-                          autoComplete="lastName"
+                          autoComplete="family-name"
                           required
                           value={lastName}
                           onChange={handleLastNameChange}
@@ -163,7 +163,7 @@ const UserProfile = () => {
                           placeholder="Location"
                           id="location"
                           name="location"
-                          autoComplete="location"
+                          autocomplete="street-address"
                           required
                           value={location}
                           onChange={handleLocationChange}
@@ -182,7 +182,7 @@ const UserProfile = () => {
                           placeholder="Username"
                           name="username"
                           id="username"
-                          autoComplete="username"
+                          autocomplete="username"
                           required
                           value={username}
                           onChange={handleUsernameChange}
