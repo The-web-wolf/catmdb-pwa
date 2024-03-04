@@ -1,167 +1,9 @@
-// Temporary custom css added.. I will remove later @omi mama...
-
 .btn-h-60 {
   // this class will remove from here later when "Omi mama" will create new size... used in cta section button
   height: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.table-responsive {
-  padding-left: 1px;
-  padding-right: 1px;
-}
-
-/* ----------------------------
-  Hero Form 1
-------------------------------*/
-.filter-search-form-1 {
-  .nice-select {
-    .current {
-      width: calc(100% - 35px);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-    }
-    .list {
-      min-width: 290px;
-    }
-  }
-}
-/* ----------------------------
-  Search list 1
-------------------------------*/
-.filter-search-form-2.search-1-adjustment,
-.search-filter.search-1-adjustment {
-  .nice-select {
-    .current {
-      width: calc(100% - 35px);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-    }
-    .list {
-      min-width: 290px;
-    }
-  }
-}
-
-// masonry css added newly for responsive
-.card-columns {
-  // used in Landing-3 content-2 section masonry
-  @include media-breakpoint-only(lg) {
-    column-count: 4;
-  }
-
-  @include media-breakpoint-only(xl) {
-    column-count: 5;
-  }
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Hero Area Custom Styles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-.hero-image-positioning-2 {
-  @include desktops {
-    transform: translateX(40%) scale(0.7);
-  }
-
-  @include large-desktops {
-    transform: translateX(50%) scale(1);
-  }
-
-  .single-image {
-    overflow: hidden;
-    border-radius: 8px;
-
-    @include desktops {
-      max-height: 700px;
-    }
-
-    img {
-      width: 100%;
-
-      @include desktops {
-        width: auto;
-        height: 100%;
-      }
-    }
-  }
-}
-
-// custom css added for rotate an item
-
-.rotate-n10 {
-  transform: rotate(-10deg);
-}
-
-// custom css Added for border
-.border-10 {
-  border-style: solid;
-  border-width: 10px;
-}
-
-.border-hit-gray-opacity-5 {
-  border-color: rgba($hit-gray, 0.5);
-}
-
-// Landing-2 Pricing Section Recomended pricing's border top custom css is here
-.recomended-pricing {
-  position: relative;
-
-  &:before {
-    position: absolute;
-    content: "";
-    left: 2px;
-    top: 0px;
-    width: 99%;
-    height: 5px;
-    background: #336ef7;
-    border-radius: 0px 0px 10px 10px;
-  }
-}
-
-
-/* OR devider */
-.or-devider {
-  text-align: center;
-  position: relative;
-  z-index: 1;
-
-  &:before {
-    content: "";
-    height: 1px;
-    width: 100%;
-    top: 50%;
-    left: 0%;
-    margin-top: 1.5px;
-    position: absolute;
-    background: var(--border-color);
-    z-index: -1;
-  }
-
-  span {
-    display: inline-block;
-    background: white;
-    padding: 15px 25px;
-  }
-}
-
-// Checkbox
-
-.checkbox-bg-primary {
-  input[type="checkbox"] + label:before {
-    background-color: red;
-  }
-}
-
-.overflow-y-scroll {
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 // Scroll Bar
@@ -190,4 +32,13 @@
       color: map-get($theme-colors, "black-2");
     }
   }
+}
+
+
+.mapBg {
+  height: 100vh;
+  width: 100%;
+  background-color: $blue;
+  background: url(../assets/bg.png) no-repeat ;
+  background-size: cover;
 }

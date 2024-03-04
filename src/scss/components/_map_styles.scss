@@ -1,12 +1,15 @@
 :root {
   --theme-bg: #021019;
   --theme-bg-light: #f1f1f1;
+  --theme-action-light: #b3dce2;
+  --theme-action-light-2: #c5d7ec;
+
   --dark-blur-bg: rgba(2, 16, 25, 0.7);
   --light-blur-bg: rgba(255, 255, 255, 0.7);
 }
 
 body {
-  background: var(--theme-bg-light);
+  background: var(--theme-action-light) !important;
   overflow-x: hidden;
 }
 .search {
@@ -134,6 +137,8 @@ body {
 
 .selected .card-item {
   border: 2px solid #144b53;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--theme-action-light);
 }
 
 .getDirectionButton {
@@ -387,9 +392,9 @@ body {
 }
 
 .StationsList {
-  background-color: var(--theme-bg-light);
   max-width: 1500px;
-  margin: 0 auto;
+  margin:2rem auto 0;
+  padding: 2rem ;
 
   .list-title {
     display: flex;

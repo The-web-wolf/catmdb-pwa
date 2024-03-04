@@ -58,7 +58,7 @@ const LocationDetails = (props) => {
 
       <div className="placeDetails__container__buttons">
         <h5>Get Direction</h5>
-        <div className="row">
+        <div className="row mb-3">
           <div className="col-12 col-sm-7">
             <div className="placeDetails__container__website">
               {gContext.selected.website && (
@@ -74,7 +74,7 @@ const LocationDetails = (props) => {
             <div className="placeDetails__container__opennow">
               <span className="fa fa-clock mr-4"></span>
               {gContext.selected.opening_hours && gContext.selected.opening_hours.open_now
-                ? 'Open Now'
+                ? 'Open'
                 : 'Closed'}
             </div>
           </div>

@@ -1,82 +1,76 @@
-import React, { useState, useContext, useEffect } from "react";
-import PageWrapper from "../components/PageWrapper";
-import SignupAuth from "../utils/auth/Signup";
-import { navigate, Link } from "gatsby";
-import Spinner from "../components/Core/Spinner";
-import GlobalContext from "../context/GlobalContext";
+import React, { useState, useContext, useEffect } from 'react'
+import PageWrapper from '../components/PageWrapper'
+import SignupAuth from '../utils/auth/Signup'
+import { navigate, Link } from 'gatsby'
+import Spinner from '../components/Core/Spinner'
+import GlobalContext from '../context/GlobalContext'
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const gContext = useContext(GlobalContext);
-  
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const gContext = useContext(GlobalContext)
+
   useEffect(() => {
     if (gContext.isLoggedIn) {
-      navigate("/profile");
+      navigate('/profile')
     }
-  }, [gContext.isLoggedIn]);
+  }, [gContext.isLoggedIn])
 
   const onUsernameChange = (e) => {
-    const username = e.target.value;
-    username === "" ? setError("Please enter your username") : setError(null);
-    setUsername(username);
-  };
+    const username = e.target.value
+    username === '' ? setError('Please enter your username') : setError(null)
+    setUsername(username)
+  }
   const onEmailChange = (e) => {
-    const email = e.target.value;
-    const isValid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    const email = e.target.value
+    const isValid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)
     // const isValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-    email === "" || !isValid
-      ? setError("Please enter a valid email")
-      : setError(null);
-    setEmail(email);
-  };
+    email === '' || !isValid ? setError('Please enter a valid email') : setError(null)
+    setEmail(email)
+  }
   const onPasswordChange = (e) => {
-    const password = e.target.value;
-    password === "" || password.length < 8
-      ? setError("Password should be atleast 8 characters")
-      : setError(null);
-    setPassword(password);
-  };
+    const password = e.target.value
+    password === '' || password.length < 8
+      ? setError('Password should be atleast 8 characters')
+      : setError(null)
+    setPassword(password)
+  }
   const onPassword2Change = (e) => {
-    const password2 = e.target.value;
-    password2 === "" || password !== password2
-      ? setError("Passwords do not match")
-      : setError(null);
-    setPassword2(password2);
-  };
+    const password2 = e.target.value
+    password2 === '' || password !== password2 ? setError('Passwords do not match') : setError(null)
+    setPassword2(password2)
+  }
 
   const handleSignup = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
     const user = {
       username,
       email,
       password,
-    };
-    const data = await SignupAuth(user, setError);
-    if (data) {
-      gContext.setUserData(data);
-      gContext.setIsLoggedIn(true);
-      navigate("/profile");
     }
-    setLoading(false);
-  };
+    const data = await SignupAuth(user, setError)
+    if (data) {
+      gContext.setUserData(data)
+      gContext.setIsLoggedIn(true)
+      navigate('/profile')
+    }
+    setLoading(false)
+  }
 
   return (
     <>
       <PageWrapper>
-        <div className="bg-dark pt-16 pb-12 pt-lg-22 pb-lg-27">
-          <div className="container">
-            <div className="row justify-content-center mt-14">
+        <div className="mapBg">
+          <div className="container h-75">
+            <div className="row align-items-center h-100">
               <div className="col-xxl-5 col-xl-6 col-lg-7">
-                <h2 className="font-size-9 text-center mb-11 text-info">
-                  Create an account{" "}
-                </h2>
+                <h2 className="font-size-9 text-center mb-11 text-info">Create an account </h2>
                 <div className="bg-white px-9 pt-9 pb-7 shadow-8 rounded-4">
                   <form name="Signup" method="post" onSubmit={handleSignup}>
                     <div className="row">
@@ -158,8 +152,7 @@ const Signup = () => {
                       <div className="col-lg-12 pt-4">
                         {error && (
                           <div className="text-warning text-center font-size-3 font-weight semibold mb-2">
-                            <span className="fa fa-exclamation-circle"></span>{" "}
-                            {error}
+                            <span className="fa fa-exclamation-circle"></span> {error}
                           </div>
                         )}
                         <button
@@ -175,7 +168,7 @@ const Signup = () => {
                             password !== password2
                           }
                         >
-                          Create Account{" "}
+                          Create Account{' '}
                           {loading ? (
                             <Spinner className="ml-4" />
                           ) : (
@@ -183,8 +176,7 @@ const Signup = () => {
                           )}
                         </button>
                         <div className="mt-5 font-size-3">
-                          Already have an account?{" "}
-                          <Link to="/login">Login</Link>
+                          Already have an account? <Link to="/login">Login</Link>
                         </div>
                       </div>
                     </div>
@@ -196,6 +188,6 @@ const Signup = () => {
         </div>
       </PageWrapper>
     </>
-  );
-};
-export default Signup;
+  )
+}
+export default Signup

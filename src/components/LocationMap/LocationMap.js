@@ -40,7 +40,7 @@ const LocationMap = (props) => {
   const [editFee, setEditFee] = useState(null)
 
   useEffect(() => {
-    // lop through user ratings and find the one that matches the selected location
+    // search through user ratings and find the one that matches the selected location
     if (gContext.userData && gContext.userData.ratings.data) {
       const rating = gContext.userData.ratings.data.find((rating) => {
         return rating.attributes.place_id === props.place_id
@@ -50,7 +50,7 @@ const LocationMap = (props) => {
         setHasRated(true)
       }
     }
-  }, [gContext.selected, gContext.userData])
+  }, [gContext.selected, props.place_id, gContext.userData])
 
   const handleRating = (newRating) => {
     setRating(newRating / 20)
@@ -116,39 +116,42 @@ const LocationMap = (props) => {
         )
       }
     },
-    [gContext, props.lat, props.lng]
+    [props.lat, props.lng]
   )
 
-  const onMapLoad = useCallback((map) => {
-    mapRef.current = map
-    const request = {
-      placeId: props.place_id,
-      fields: [
-        'formatted_address',
-        'name',
-        'international_phone_number',
-        'rating',
-        'opening_hours',
-        'user_ratings_total',
-        'website',
-        'place_id',
-      ],
-    }
-    const service = new window.google.maps.places.PlacesService(mapRef.current)
-    service &&
-      service.getDetails(request, (place, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-          gContext.setSelected(place)
-          const directionsService = new window.google.maps.DirectionsService()
-          const directionsRenderer = new window.google.maps.DirectionsRenderer()
-          directionsRenderer.setMap(mapRef.current)
-          setDirectionParams({
-            directionsService,
-            directionsRenderer,
-          })
-        }
-      })
-  }, [])
+  const onMapLoad = useCallback(
+    (map) => {
+      mapRef.current = map
+      const request = {
+        placeId: props.place_id,
+        fields: [
+          'formatted_address',
+          'name',
+          'international_phone_number',
+          'rating',
+          'opening_hours',
+          'user_ratings_total',
+          'website',
+          'place_id',
+        ],
+      }
+      const service = new window.google.maps.places.PlacesService(mapRef.current)
+      service &&
+        service.getDetails(request, (place, status) => {
+          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+            gContext.setSelected(place)
+            const directionsService = new window.google.maps.DirectionsService()
+            const directionsRenderer = new window.google.maps.DirectionsRenderer()
+            directionsRenderer.setMap(mapRef.current)
+            setDirectionParams({
+              directionsService,
+              directionsRenderer,
+            })
+          }
+        })
+    },
+    [gContext, props.place_id]
+  )
 
   const handleGetDirection = useCallback(
     (e) => {
@@ -162,7 +165,7 @@ const LocationMap = (props) => {
         : 'DRIVING'
       calculateAndDisplayRoute(directionsService, directionsRenderer, mode)
     },
-    [directionParams]
+    [calculateAndDisplayRoute, directionParams]
   )
 
   const { isLoaded, loadError } = useLoadScript({
