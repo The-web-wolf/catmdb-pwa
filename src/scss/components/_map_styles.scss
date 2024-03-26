@@ -422,6 +422,9 @@ body {
       }
     }
   }
+  .cards-wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 
   .card-container {
     margin: 10px 5px;
@@ -450,6 +453,8 @@ body {
       }
     }
   }
+  }
+
 }
 
 .fee-display {

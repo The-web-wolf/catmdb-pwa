@@ -45,7 +45,7 @@ const StationList = (props) => {
           Map View
         </button>
       </div>
-      <div className="row align-items-center">
+      <div className="cards-wrapper">
         {locations.map((location) => {
           const distance = getDistance(
             gContext.location.lat,
@@ -54,41 +54,40 @@ const StationList = (props) => {
             location.geometry.location.lng()
           )
           return (
-            <div className="col-12 col-lg-6" key={location.place_id}>
-              <StationCard
-                details={location}
-                distance={distance}
-                onSelectedChange={handleSelectedChange}
-                isSelected={gContext.selected && gContext.selected.place_id === location.place_id}
+            <StationCard
+              details={location}
+              distance={distance}
+              onSelectedChange={handleSelectedChange}
+              isSelected={gContext.selected && gContext.selected.place_id === location.place_id}
+              key={location.place_id}
+            >
+              <div
+                className={
+                  gContext.selected && gContext.selected.place_id === location.place_id
+                    ? 'ATM-details selected'
+                    : 'ATM-details'
+                }
               >
-                <div
-                  className={
-                    gContext.selected && gContext.selected.place_id === location.place_id
-                      ? 'ATM-details selected'
-                      : 'ATM-details'
+                <Fee
+                  place_id={location.place_id}
+                  onAddFee={() =>
+                    setAddFee({
+                      place_id: location.place_id,
+                      place_name: location.name,
+                    })
                   }
-                >
-                  <Fee
-                    place_id={location.place_id}
-                    onAddFee={() =>
-                      setAddFee({
-                        place_id: location.place_id,
-                        place_name: location.name,
-                      })
-                    }
-                    onEditFee={(fee) =>
-                      setEditFee({
-                        place_id: location.place_id,
-                        place_name: location.name,
-                        fee_id: fee.id,
-                        fee_amount: fee.amount,
-                        fee_currency: fee.currency,
-                      })
-                    }
-                  />
-                </div>
-              </StationCard>
-            </div>
+                  onEditFee={(fee) =>
+                    setEditFee({
+                      place_id: location.place_id,
+                      place_name: location.name,
+                      fee_id: fee.id,
+                      fee_amount: fee.amount,
+                      fee_currency: fee.currency,
+                    })
+                  }
+                />
+              </div>
+            </StationCard>
           )
         })}
       </div>

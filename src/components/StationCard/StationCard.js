@@ -1,15 +1,13 @@
-import React from "react";
+import React from 'react'
 
-import { Link } from "gatsby";
-import RatingStars from "../../components/MapAssets/RatingStars";
+import { Link } from 'gatsby'
+import RatingStars from '../../components/MapAssets/RatingStars'
 
 const StationCard = (props) => {
-  const { details, onSelectedChange, children } = props;
+  const { details, onSelectedChange, children } = props
   return (
     <div
-      className={
-        props.isSelected ? "card-container selected" : "card-container "
-      }
+      className={props.isSelected ? 'card-container selected' : 'card-container '}
       data-aos="fade-up"
       data-aos-duration="800"
       onClick={() => onSelectedChange(details)}
@@ -21,21 +19,12 @@ const StationCard = (props) => {
           <div className="col-12">
             <div className="media align-items-center">
               <div className="square-3 d-block mr-5 mr-lg-8">
-                <img
-                  src={details.icon}
-                  alt={details.name}
-                  height={50}
-                  width={50}
-                />
+                <img src={details.icon} alt={details.name} height={50} width={50} />
               </div>
               <div className="w-100">
-                <h3 className="mb-0 font-size-5 heading-default-color">
-                  {details.name}
-                </h3>
-                <div className="row" style={{ width: "inherit" }}>
-                  <div className="col-6 font-size-3 line-height-1">
-                    {props.distance}
-                  </div>
+                <h3 className="mb-0 font-size-5 heading-default-color">{details.name}</h3>
+                <div className="row" style={{ width: 'inherit' }}>
+                  <div className="col-6 font-size-3 line-height-1">{props.distance}</div>
                   <div className="col-6 p-0 text-right ">
                     <RatingStars
                       rating={details.rating}
@@ -76,7 +65,7 @@ const StationCard = (props) => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StationCard;
+export default StationCard
