@@ -27,18 +27,17 @@
 
 .result-view-type {
   a {
-    color: map-get($theme-colors, "hit-gray");
+    color: map-get($theme-colors, 'hit-gray');
     &.active {
-      color: map-get($theme-colors, "black-2");
+      color: map-get($theme-colors, 'black-2');
     }
   }
 }
-
 
 .mapBg {
   height: 100vh;
   width: 100%;
   background-color: $blue;
-  background: url(../assets/bg.png) no-repeat ;
+  background: url(../assets/bg.jpg) no-repeat;
   background-size: cover;
 }
