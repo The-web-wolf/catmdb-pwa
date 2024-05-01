@@ -1,18 +1,17 @@
-import React, { useContext } from "react";
-import GlobalContext from "../../context/GlobalContext";
-import Offcanvas from "../Offcanvas";
-import NestedMenu from "../NestedMenu";
-import { visitorMenu, userMenu } from "./menuItems";
-
+import React, { useContext } from 'react'
+import GlobalContext from '../../context/GlobalContext'
+import Offcanvas from '../Offcanvas'
+import NestedMenu from '../NestedMenu'
+import { visitorMenu, userMenu } from './menuItems'
 
 const Header = () => {
-  const gContext = useContext(GlobalContext);
+  const gContext = useContext(GlobalContext)
 
   return (
     <>
       <button
         className={`navbar-toggler btn-close-off-canvas ${
-          gContext.visibleOffCanvas ? "collapsed" : ""
+          gContext.visibleOffCanvas ? 'collapsed' : ''
         }`}
         type="button"
         data-toggle="collapse"
@@ -24,15 +23,10 @@ const Header = () => {
       >
         <i className="fa fa-ellipsis-h d-block"></i>
       </button>
-      <Offcanvas
-        show={gContext.visibleOffCanvas}
-        onHideOffcanvas={gContext.toggleOffCanvas}
-      >
-        <NestedMenu menuItems={
-          gContext.isLoggedIn ? userMenu : visitorMenu
-        } />
+      <Offcanvas show={gContext.visibleOffCanvas} onHideOffcanvas={gContext.toggleOffCanvas}>
+        <NestedMenu menuItems={gContext.userLoggedIn() ? userMenu : visitorMenu} />
       </Offcanvas>
     </>
-  );
-};
-export default Header;
+  )
+}
+export default Header

@@ -43,7 +43,7 @@ const Feedback = (props) => {
               zIndex: '10000',
             }}
           />
-          {gContext.isLoggedIn ? (
+          {gContext.userLoggedIn() ? (
             <button
               className="feedbackForm__body__button mt-10 mb-5"
               onClick={props.onRatingSubmit}

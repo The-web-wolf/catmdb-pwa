@@ -15,10 +15,10 @@ const Signup = () => {
   const gContext = useContext(GlobalContext)
 
   useEffect(() => {
-    if (gContext.isLoggedIn) {
+    if (gContext.userLoggedIn()) {
       navigate('/profile')
     }
-  }, [gContext.isLoggedIn])
+  }, [gContext])
 
   const onUsernameChange = (e) => {
     const username = e.target.value

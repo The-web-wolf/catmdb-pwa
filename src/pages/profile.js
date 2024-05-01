@@ -56,7 +56,7 @@ const UserProfile = () => {
   }
 
   useEffect(() => {
-    if (!gContext.isLoggedIn) {
+    if (!gContext.userLoggedIn()) {
       navigate('/login')
     } else {
       setFirstName(gContext.userData.firstName)
@@ -64,7 +64,7 @@ const UserProfile = () => {
       setUsername(gContext.userData.username)
       setLocation(gContext.userData.location)
     }
-  }, [gContext.isLoggedIn, gContext.userData])
+  }, [gContext])
 
   return (
     <>

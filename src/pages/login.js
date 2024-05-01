@@ -15,10 +15,10 @@ const Login = () => {
   const gContext = useContext(GlobalContext)
 
   useEffect(() => {
-    if (gContext.isLoggedIn) {
+    if (gContext.userLoggedIn()) {
       navigate('/profile')
     }
-  }, [gContext.isLoggedIn])
+  }, [gContext])
 
   const onEmailChange = (e) => {
     const useremail = e.target.value
