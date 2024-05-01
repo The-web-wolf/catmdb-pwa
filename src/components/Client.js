@@ -8,7 +8,13 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
     )
   }
-  if (networkError) console.log(`[Network error]: ${networkError}`)
+  if (networkError) {
+    // console.log(`[Network error]: ${networkError}`)
+    if (networkError.message.includes('401')) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('id')
+    }
+  }
 })
 
 const link = from([errorLink, new HttpLink({ uri: process.env.API_URL })])

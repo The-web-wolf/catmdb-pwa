@@ -28,6 +28,11 @@ export default function RatingStars(props) {
       }
     }
     place_ratings()
+
+    return () => {
+      setRatingValue(null)
+      setUser_ratings_totalValue(null)
+    }
   }, [gContext.refreshRatings, place_id, props])
 
   return ratingValue ? (

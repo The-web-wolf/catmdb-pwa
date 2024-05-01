@@ -1,19 +1,17 @@
-import React from "react";
-import PageWrapper from "../components/PageWrapper";
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-
+import React from 'react'
+import PageWrapper from '../components/PageWrapper'
+import Header from '../components/Header'
 
 const Contact = () => {
   return (
     <>
       <PageWrapper>
-      <Header />
-        <div className="bg-default-2 pt-16 pb-12 pt-lg-22 pb-lg-27">
+        <Header />
+        <div className="mapBg pt-16 pb-12 pt-lg-22 pb-lg-27">
           <div className="container">
             <div className="row justify-content-center mt-14">
               <div className="col-xxl-6 col-xl-7 col-lg-8">
-                <h2 className="font-size-9 text-center mb-11">Contact Us</h2>
+                <h2 className="font-size-9 text-center mb-11 text-primary">Contact Us</h2>
                 <div className="bg-white px-9 pt-9 pb-7 shadow-8 rounded-4">
                   <form
                     name="contact"
@@ -102,9 +100,8 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </PageWrapper>
     </>
-  );
-};
-export default Contact;
+  )
+}
+export default Contact
