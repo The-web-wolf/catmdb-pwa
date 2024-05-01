@@ -86,12 +86,15 @@ const StationsMap = (props) => {
         const service = new window.google.maps.places.PlacesService(mapRef.current)
         service &&
           service.textSearch(request, (results, status) => {
-            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+            if (
+              status === window.google.maps.places.PlacesServiceStatus.OK &&
+              results?.length > 0
+            ) {
               if (recenter) {
                 setSelectedAndPan(results[0], 10)
               }
               props.onSetFoundLocations(results)
-              results.foreach((result, index) => {
+              results.forEach((result, index) => {
                 setTimeout(() => {
                   const marker = new window.google.maps.Marker({
                     position: {
