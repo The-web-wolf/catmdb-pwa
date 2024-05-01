@@ -22,14 +22,15 @@ const Feedback = (props) => {
         <div className="feedbackForm__body pt-5">
           <Rating
             onClick={props.onRatingChange}
-            ratingValue={props.rating}
+            initialValue={props.rating}
             size={40}
             label
-            allowHalfIcon
+            allowFraction
+            allowHover
             transition
             fillColor="#1d9caf"
             emptyColor="grey"
-            showToolTip
+            showToolTip={true}
             tooltipArray={['Terrible', 'Bad', 'OK', 'Good', 'Great']}
             tooltipStyle={{
               backgroundColor: '#1d9caf',

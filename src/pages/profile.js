@@ -69,7 +69,7 @@ const UserProfile = () => {
   return (
     <>
       <PageWrapper headerConfig={{ button: 'profile' }}>
-        <div className="bg-dark pt-10 pt-lg-15 pb-7 pb-lg-23">
+        <div className="pt-10 pt-lg-15 pb-7 pb-lg-23 mapBg">
           <div className="container">
             {/* <!-- back Button --> */}
             <div className="row">

@@ -23,6 +23,9 @@ const options = {
   disableDefaultUI: false,
   zoomControl: true,
   gestureHandling: 'greedy',
+  mapTypeControl: false,
+  fullscreenControl: false,
+  streetViewControl: false,
 }
 
 const LocationMap = (props) => {
@@ -53,7 +56,7 @@ const LocationMap = (props) => {
   }, [gContext.selected, props.place_id, gContext.userData])
 
   const handleRating = (newRating) => {
-    setRating(newRating / 20)
+    setRating(newRating)
   }
 
   const handleSubmitRating = async () => {

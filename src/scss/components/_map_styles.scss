@@ -292,6 +292,14 @@ body {
     opacity: 1;
     height: 100%;
     transition: all 0.3s ease-in-out;
+    .feedbackForm {
+      height: auto;
+    }
+  }
+  &:not(.show) {
+    .feedbackForm {
+      height: 0px;
+    }
   }
 
   .close-feedback-form {
@@ -304,7 +312,6 @@ body {
     text-align: center;
     overflow: hidden;
     border-radius: inherit;
-    height: auto;
 
     .feedbackForm__header__subtitle {
       font-size: 1em;
@@ -393,8 +400,8 @@ body {
 
 .StationsList {
   max-width: 1500px;
-  margin:2rem auto 0;
-  padding: 2rem ;
+  margin: 2rem auto 0;
+  padding: 2rem;
 
   .list-title {
     display: flex;
@@ -422,39 +429,38 @@ body {
       }
     }
   }
-  .cards-wrapper{
+  .cards-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 
-  .card-container {
-    margin: 10px 5px;
-    position: relative;
-    border-radius: 5px;
-    cursor: pointer;
+    .card-container {
+      margin: 10px 5px;
+      position: relative;
+      border-radius: 5px;
+      cursor: pointer;
 
-    &:not(.selected) {
-      .card-item {
-        background-color: rgba(255, 255, 255, 0.308);
-        backdrop-filter: blur(16px) saturate(180%);
+      &:not(.selected) {
+        .card-item {
+          background-color: rgba(255, 255, 255, 0.308);
+          backdrop-filter: blur(16px) saturate(180%);
+        }
       }
-    }
-    .ATM-details {
-      will-change: height;
-      height: 0px !important;
-      overflow: hidden;
-      transition: all 0.3s ease-in-out;
-      &.selected {
-        height: auto !important;
-        overflow-y: visible;
-        padding: 10px 0;
-        margin-top: 10px;
-        border-top: 0.51px groove #1d9caf;
+      .ATM-details {
+        will-change: height;
+        height: 0px !important;
+        overflow: hidden;
         transition: all 0.3s ease-in-out;
+        &.selected {
+          height: auto !important;
+          overflow-y: visible;
+          padding: 10px 0;
+          margin-top: 10px;
+          border-top: 0.51px groove #1d9caf;
+          transition: all 0.3s ease-in-out;
+        }
       }
     }
   }
-  }
-
 }
 
 .fee-display {
@@ -525,15 +531,16 @@ body {
 
   .close-addFeeForm {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 0px;
+    right: 10px;
     background-color: #1d9caf;
     color: white;
     border-radius: 50%;
     text-align: center;
     width: 30px;
     height: 30px;
-    padding-top: 4px;
+    border: none;
+    outline: none;
     transition: all 0.3s ease-in-out;
   }
   form {
@@ -550,9 +557,14 @@ body {
   margin-top: 20px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  button {
+    background: none;
+    border: none;
+    outline: none;
+  }
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     height: 0.3px;
     background: linear-gradient(to right, #1d9caf, #f1f1f1, #1d9caf);
