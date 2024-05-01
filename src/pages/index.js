@@ -5,7 +5,7 @@ import client from '../components/Client'
 import { ApolloProvider } from '@apollo/client'
 
 const IndexPage = () => {
-  console.log('ENV', process.env.API_URL)
+  console.log('ENV', process.env.GATSBY_API_URL)
   return (
     <ApolloProvider client={client}>
       <PageWrapper>

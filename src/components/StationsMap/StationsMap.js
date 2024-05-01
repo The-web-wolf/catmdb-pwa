@@ -11,7 +11,7 @@ import StationCard from '../StationCard'
 import { GoogleMap, useLoadScript } from '@react-google-maps/api'
 import StationsList from './StationsList'
 
-const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY
+const googleMapsApiKey = process.env.GATSBY_GOOGLE_MAPS_API_KEY
 
 const options = {
   styles: MapStyles,
@@ -25,19 +25,12 @@ const StationsMap = (props) => {
   const cardsRef = useRef(null)
   const mapRef = useRef()
 
-  const makeCoordSelected = useCallback((coord) => {
-    gContext.setSelected(coord)
-  }, [])
-
-  const onMapLoad = useCallback((map) => {
-    mapRef.current = map
-    getAtms(true)
-  }, [])
-
-  const showMap = useCallback(() => {
-    props.onMapShow()
-    getAtms(true)
-  }, [])
+  const makeCoordSelected = useCallback(
+    (coord) => {
+      gContext.setSelected(coord)
+    },
+    [gContext]
+  )
 
   const panTo = useCallback(({ lat, lng, zoomLevel }) => {
     mapRef.current.panTo({ lat, lng })
@@ -49,28 +42,31 @@ const StationsMap = (props) => {
     libraries: gContext.libraries,
   })
 
-  const setSelectedAndPan = useCallback((coord, zoomLevel) => {
-    gContext.setSelected({
-      lat: coord.geometry.location.lat(),
-      lng: coord.geometry.location.lng(),
-      ...coord,
-    })
-    panTo({
-      lat: coord.geometry.location.lat(),
-      lng: coord.geometry.location.lng(),
-      zoomLevel,
-    })
-    // scroll into view of div with place_id
-    cardsRef.current.childNodes.forEach((node) => {
-      if (node.getAttribute('id') === coord.place_id) {
-        node.scrollIntoView({
-          behavior: 'smooth',
-          block: 'end',
-          inline: 'center',
-        })
-      }
-    })
-  }, [])
+  const setSelectedAndPan = useCallback(
+    (coord, zoomLevel) => {
+      gContext.setSelected({
+        lat: coord.geometry.location.lat(),
+        lng: coord.geometry.location.lng(),
+        ...coord,
+      })
+      panTo({
+        lat: coord.geometry.location.lat(),
+        lng: coord.geometry.location.lng(),
+        zoomLevel,
+      })
+      // scroll into view of div with place_id
+      cardsRef.current.childNodes.forEach((node) => {
+        if (node.getAttribute('id') === coord.place_id) {
+          node.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'center',
+          })
+        }
+      })
+    },
+    [gContext, panTo]
+  )
 
   const getAtms = useCallback(
     (recenter, thisCoordinate) => {
@@ -95,7 +91,7 @@ const StationsMap = (props) => {
                 setSelectedAndPan(results[0], 10)
               }
               props.onSetFoundLocations(results)
-              results.map((result, index) => {
+              results.foreach((result, index) => {
                 setTimeout(() => {
                   const marker = new window.google.maps.Marker({
                     position: {
@@ -121,7 +117,20 @@ const StationsMap = (props) => {
           })
       } catch (err) {}
     },
-    [props.showMap]
+    [props, setSelectedAndPan]
+  )
+
+  const showMap = useCallback(() => {
+    props.onMapShow()
+    getAtms(true)
+  }, [props, getAtms])
+
+  const onMapLoad = useCallback(
+    (map) => {
+      mapRef.current = map
+      getAtms(true)
+    },
+    [getAtms]
   )
 
   if (loadError) return <Text>Error loading maps</Text>

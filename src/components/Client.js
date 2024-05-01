@@ -17,7 +17,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 })
 
-const link = from([errorLink, new HttpLink({ uri: process.env.API_URL })])
+const link = from([errorLink, new HttpLink({ uri: process.env.GATSBY_API_URL })])
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('token')
