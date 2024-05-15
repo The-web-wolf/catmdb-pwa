@@ -461,6 +461,13 @@ body {
       }
     }
   }
+
+  @media (max-width: 550px) {
+    padding: 2rem 1rem;
+    .cards-wrapper {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
 }
 
 .fee-display {
