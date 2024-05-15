@@ -50,6 +50,3 @@ After migration, thoroughly test the app to ensure that it functions correctly i
 
 ## Deployment:
 Once the app is successfully migrated and tested, deploy it to your desired hosting platform or server. Use the appropriate deployment commands or scripts provided by your hosting provider or CI/CD pipeline.
-
-## Post-Deployment Checks:
-After deployment, perform post-deployment checks to verify that your Gatsby app is running smoothly in the production environment. Monitor performance, check for errors, and address any issues promptly.
